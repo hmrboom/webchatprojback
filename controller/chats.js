@@ -55,9 +55,21 @@ const addMsg = async (req,res)=>{
         res.status(400).send(err)
     }
 }
-
+const getAllConv = async (req,res)=>{
+    try {
+        const {id:convID} = req.params;
+        const chat = await Chat.findById({_id:convID});
+        if(!chat){
+            res.status(404).send({msg:'Chat with this ID not found'})
+        }
+        res.status(200).send(chat.conversations)
+    } catch (err) {
+        res.status(400).send(err)
+    }
+}
 module.exports = {
     createChat,
     deleteMsg,
-    addMsg
+    addMsg,
+    getAllConv
 }

@@ -25,7 +25,7 @@ const ChatSchema =new mongoose.Schema({
     conversations:[
         {
         text:{type:String},
-        user:{type:String},
+        user:{type:Object},
         when:{
             type:String,
             default:currentDate
